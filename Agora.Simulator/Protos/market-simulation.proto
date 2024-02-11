@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option csharp_namespace = "Agora.Simulator";
+
+package Agora.Simulator;
+
+service Market {
+  rpc SubscribeToOrders (OrderSubscriptionRequest) returns (stream Order);
+}
+
+message OrderSubscriptionRequest {
+  string instrument = 1;
+}
+
+message Order {
+  string instrument = 1;
+  string type = 2;
+  double volume = 3;
+  double price = 4;
+}

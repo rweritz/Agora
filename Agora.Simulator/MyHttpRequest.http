@@ -1,0 +1,18 @@
+﻿### Prometheus Endpoint
+GET http://localhost:5000/metrics
+Accept: application/json
+
+### Health Endpoint
+GET http://localhost:5000/health
+Accept: application/json
+
+### Health Metrics Endpoint
+GET http://localhost:5000/healthmetrics
+Accept: application/json
+
+### Order Subscription
+GRPC localhost:5223/Agora.Simulator.Market/SubscribeToOrders
+
+{
+  "instrument": "ABC"
+}
