@@ -2,10 +2,15 @@ using Grpc.Core;
 
 namespace Agora.Simulator.Services;
 
-public class MarketService(ILogger<MarketService> logger, OrderGenerator orderGenerator, MarketSimulatorMetrics metrics) : Market.MarketBase
+public class MarketService(ILogger<MarketService> logger, IServiceProvider serviceProvider) : Market.MarketBase
 {
     public override Task SubscribeToOrders(OrderSubscriptionRequest request, IServerStreamWriter<Order> responseStream, ServerCallContext context)
     {
+        var orderGenerator = serviceProvider
+            .GetServices<IHostedService>()
+            .OfType<OrderGenerator>()
+            .Single();
+        
         var orderSubscriber = new OrderSubscriber(orderGenerator, responseStream);
         
         while (!context.CancellationToken.IsCancellationRequested)

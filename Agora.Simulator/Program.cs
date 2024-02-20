@@ -4,24 +4,20 @@ using OpenTelemetry.Metrics;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.AddServiceDefaults();
-builder.Services.AddOpenTelemetry()
-    .WithMetrics(metrics =>
-    {
-        metrics.AddMeter("MarketSimulator");
-        metrics.AddPrometheusExporter();
-    });
+builder.Configuration.AddKeyPerFile("/run/secrets/");
+
+var additionalMeters = new[] { "Agora.Simulator" };
+builder.AddServiceDefaults(additionalMeters);
+builder.Services.AddOpenTelemetry();
 
 // Add services to the container.
 builder.Services.AddGrpc();
 builder.Services.AddSingleton<MarketSimulatorMetrics>();
-builder.Services.AddSingleton<OrderGenerator>();
+builder.Services.AddHostedService<OrderGenerator>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-app.Services.GetService<OrderGenerator>()?.Start();
-app.UseHealthChecksPrometheusExporter("/metrics");
 app.MapDefaultEndpoints();
 app.MapGrpcService<MarketService>();
 

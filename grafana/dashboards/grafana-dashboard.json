@@ -113,7 +113,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "up{instance=\"host.docker.internal:5000\"}",
+          "expr": "up{job=\"agora\", instance=\"host.docker.internal:5000\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -129,7 +129,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "healthcheck{instance=\"host.docker.internal:5000\", healthcheck=\"self\"}",
+          "expr": "healthcheck{job=\"agora\", instance=\"host.docker.internal:5000\", healthcheck=\"self\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -153,9 +153,9 @@
           "id": "calculateField",
           "options": {
             "binary": {
-              "left": "{__name__=\"up\", instance=\"host.docker.internal:5000\", job=\"prometheus\"}",
+              "left": "{__name__=\"up\", instance=\"host.docker.internal:5000\", job=\"agora\"}",
               "operator": "*",
-              "right": "{__name__=\"healthcheck\", healthcheck=\"self\", instance=\"host.docker.internal:5000\", job=\"prometheus\"}"
+              "right": "{__name__=\"healthcheck\", healthcheck=\"self\", instance=\"host.docker.internal:5000\", job=\"agora\"}"
             },
             "mode": "binary",
             "reduce": {
@@ -238,7 +238,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "agorasimulator_orders_count_lastminute",
+          "expr": "agora_simulator_orders_count_lastminute",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,

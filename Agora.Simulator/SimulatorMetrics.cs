@@ -6,7 +6,7 @@ public class MarketSimulatorMetrics
 {
     public MarketSimulatorMetrics(IMeterFactory meterFactory)
     {
-        var meter = meterFactory.Create("agorasimulator");
+        var meter = meterFactory.Create("Agora.Simulator");
         ObservableOrdersCountLastMinute = meter.CreateObservableGauge<int>("orders.count.lastminute", GetOrderCountLastMinute);
         OrdersCountTotal = meter.CreateCounter<int>("orders.count.total");
     }

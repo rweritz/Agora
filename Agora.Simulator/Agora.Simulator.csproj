@@ -1,23 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-    </PropertyGroup>
+      <UserSecretsId>dotnet-Agora.Simulator-ad1d0501-3a89-4c05-a614-2e5f3953cdf8</UserSecretsId>
+  </PropertyGroup>
 
     <ItemGroup>
         <Protobuf Include="Protos\market-simulation.proto" GrpcServices="Server" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="AspNetCore.HealthChecks.Prometheus.Metrics" Version="8.0.0" />
-        <PackageReference Include="Grpc.AspNetCore" Version="2.57.0"/>
-        <PackageReference Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" Version="1.7.0-rc.1" />
+        <PackageReference Include="Grpc.AspNetCore" Version="2.60.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Agora.ServiceDefaults\Agora.ServiceDefaults.csproj" />
     </ItemGroup>
-
 </Project>

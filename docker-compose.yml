@@ -24,5 +24,26 @@ services:
       - ./grafana/datasources:/etc/grafana/provisioning/datasources
       - ./grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/main.yaml
       - ./grafana/dashboards:/var/lib/grafana/dashboards
+  agora-simulator:
+    image: agora-simulator
+    container_name: agora-simulator
+    ports:
+      - 5223:5223
+      - 5000:5000
+    restart: unless-stopped
+    environment:
+      - ASPNETCORE_URLS="https://+"
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Agora.Simulator.pfx
+#      - ASPNETCORE_Kestrel__Certificates__Default__Password=/run/secrets/certificate_password
+#      - ASPNETCORE_Kestrel__Certificates__Default__Password=75g9Re7k6rMQ6laAyOol
+    volumes:
+      - ~/.aspnet/https:/https:ro
+    secrets:
+      - certificate_password
+
+secrets:
+  certificate_password:
+    file: ./ASPNETCORE_Kestrel__Certificates__Default__Password
+
 volumes:
   prom_data:

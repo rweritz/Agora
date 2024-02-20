@@ -1,33 +1,26 @@
 ﻿namespace Agora.Simulator;
 
 public class OrderGenerator(ILogger<OrderGenerator> logger, MarketSimulatorMetrics metrics)
-    : IObservable<Order>
+    : BackgroundService, IObservable<Order>
 {
-    
-    private readonly CancellationTokenSource _cancellationTokenSource = new();
-
     private readonly List<IObserver<Order>> _observers = new();
 
-    private Task? _task;
-
-    public void Start()
+    public IDisposable Subscribe(IObserver<Order> observer)
     {
-        _task ??= Task.Factory.StartNew(GenerateOrder, _cancellationTokenSource.Token);
+        if (!_observers.Contains(observer))
+            _observers.Add(observer);
+
+        return new Unsubscriber<Order>(_observers, observer);
     }
 
-    public void Stop()
-    {
-        _cancellationTokenSource.Cancel();
-    }
-    
-    private void GenerateOrder()
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         var compareMinute = DateTime.UtcNow.Minute;
         var ordersCountLastMinute = 0;
         
         var random = new Random(compareMinute);
         
-        while (!_cancellationTokenSource.Token.IsCancellationRequested)
+        while (!stoppingToken.IsCancellationRequested)
         {
             for (var i = 1; i < random.Next(1, 20); i++)
             {
@@ -57,16 +50,8 @@ public class OrderGenerator(ILogger<OrderGenerator> logger, MarketSimulatorMetri
                 }
             }
             
-            Thread.Sleep(TimeSpan.FromSeconds(random.Next(1, 3)));
+            await Task.Delay(TimeSpan.FromSeconds(random.Next(1, 3)), stoppingToken);
         }
-    }
-
-    public IDisposable Subscribe(IObserver<Order> observer)
-    {
-        if (!_observers.Contains(observer))
-            _observers.Add(observer);
-
-        return new Unsubscriber<Order>(_observers, observer);
     }
 }
 

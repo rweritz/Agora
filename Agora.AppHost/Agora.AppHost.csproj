@@ -9,11 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting" Version="8.0.0-preview.2.23619.3" />
+    <ProjectReference Include="..\Agora.PersistenceWorker\Agora.PersistenceWorker.csproj" />
+    <ProjectReference Include="..\Agora.Simulator\Agora.Simulator.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Agora.Simulator\Agora.Simulator.csproj" />
+    <PackageReference Include="Aspire.Hosting" Version="8.0.0-preview.3.24105.21" />
   </ItemGroup>
 
 </Project>

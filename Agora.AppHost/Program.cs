@@ -1,8 +1,12 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-var apiService = builder.AddProject<Projects.Agora_Simulator>("agora-simulator");
+var simulator = builder.AddProject<Projects.Agora_Simulator>("agora-simulator")
+    .WithLaunchProfile("https");
 
-//builder.AddProject<Projects.MarketDemo_Web>("market-read-service")
-//    .WithReference(apiService);
+//var postgresdb = builder.AddPostgres("pg")
+//    .AddDatabase("postgresdb");
+
+builder.AddProject<Projects.Agora_PersistenceWorker>("agora-persistence");
+//    .WithReference(simulator);
 
 builder.Build().Run();
