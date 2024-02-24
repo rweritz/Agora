@@ -1,10 +1,10 @@
+using System.Diagnostics;
 using Agora.Simulator;
 using Agora.Simulator.Services;
 using OpenTelemetry.Metrics;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Configuration.AddKeyPerFile("/run/secrets/");
+builder.Configuration.AddJsonFile("/run/secrets/secrets_file", true);
 
 var additionalMeters = new[] { "Agora.Simulator" };
 builder.AddServiceDefaults(additionalMeters);
