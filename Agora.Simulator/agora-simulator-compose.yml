@@ -1,0 +1,25 @@
+﻿include:
+  - ../agora-network-compose.yml
+
+services:
+  agora-simulator:
+    build:
+        context: ../.
+        dockerfile: Agora.Simulator/Dockerfile
+    container_name: agora-simulator
+    ports:
+      - 5224:5223
+      - 5001:5000
+    restart: unless-stopped
+    environment:
+      - ASPNETCORE_URLS="https://+"
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Agora.Simulator.pfx
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ~/.aspnet/https:/https:ro
+    secrets:
+      - secrets_file
+  
+secrets:
+  secrets_file:
+    file: ${AppData}/Microsoft/UserSecrets/dotnet-Agora.Simulator-ad1d0501-3a89-4c05-a614-2e5f3953cdf8/secrets.json

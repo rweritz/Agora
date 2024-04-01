@@ -41,7 +41,7 @@ Afterwards you can start Docker compose stack
 docker-compose up -d
 ```
 
-### Take a look at the Grafana dasboard
+### Take a look at the Grafana dashboard
 
 Open `localhost:3000` within the browser and login to Grafana
 

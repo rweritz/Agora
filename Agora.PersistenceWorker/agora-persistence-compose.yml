@@ -1,0 +1,47 @@
+﻿include:
+  - ../agora-network-compose.yml
+  - ../Agora.Simulator/agora-simulator-compose.yml
+
+services:
+  agora-persistence:
+    build:
+      context: ../.
+      dockerfile: Agora.PersistenceWorker/Dockerfile
+    container_name: agora-persistence
+#    ports:
+#      - 5001:5001
+    restart: unless-stopped
+    environment:
+#      - ASPNETCORE_URLS="https://+"
+#      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Agora.Simulator.pfx
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__MarketDbContext=User ID=postgres;Password=postgres;Server=agora-persistence-db;Port=5432;Database=AgoraPersistenceDb;IntegratedSecurity=true;Pooling=true
+      - Market__ServerAddress=https://agora-simulator:5223
+    volumes:
+      -  :/etc/ssl/certs
+#      - ~/.aspnet/https:/https:ro
+#    secrets:
+#      - secrets_file
+    networks:
+      - agora-network
+  agora-persistence-db:
+    image: postgres:latest
+    container_name: agora-persistence-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=AgoraPersistenceDb
+    ports:
+      - 5433:5432
+    restart: always
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - agora-network
+
+volumes:
+  db_data:
+   
+#secrets:
+#  secrets_file:
+#    file: ${AppData}/Microsoft/UserSecrets/dotnet-Agora.Simulator-ad1d0501-3a89-4c05-a614-2e5f3953cdf8/secrets.json

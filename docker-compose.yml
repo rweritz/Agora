@@ -1,3 +1,6 @@
+include:
+  - ./Agora.Simulator/agora-simulator-compose.yml
+
 services:
   prometheus:
     image: prom/prometheus
@@ -23,25 +26,6 @@ services:
       - ./grafana/datasources:/etc/grafana/provisioning/datasources
       - ./grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/main.yaml
       - ./grafana/dashboards:/var/lib/grafana/dashboards
-  agora-simulator:
-    image: agora-simulator
-    container_name: agora-simulator
-    ports:
-      - 5223:5223
-      - 5000:5000
-    restart: unless-stopped
-    environment:
-      - ASPNETCORE_URLS="https://+"
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Agora.Simulator.pfx
-      - ASPNETCORE_ENVIRONMENT=Development
-    volumes:
-      - ~/.aspnet/https:/https:ro
-    secrets:
-      - secrets_file
-
-secrets:
-  secrets_file:
-    file: ${AppData}/Microsoft/UserSecrets/dotnet-Agora.Simulator-ad1d0501-3a89-4c05-a614-2e5f3953cdf8/secrets.json
 
 volumes:
   prom_data:
