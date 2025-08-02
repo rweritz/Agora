@@ -1,9 +1,9 @@
-using System.Net.Sockets;
+using Aspire.Hosting;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
 var simulator = builder.AddProject<Projects.Agora_Simulator>("agora-simulator")
-    .ExcludeLaunchProfile()
+    .WithEnvironment("ASPNETCORE_ENVIRONMENT", "Development")
     .WithEndpoint("gRPC", e =>
     {
         e.IsProxied = false;

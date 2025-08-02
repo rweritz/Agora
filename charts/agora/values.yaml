@@ -1,0 +1,61 @@
+agora-simulator:
+  replicaCount: 1
+
+  image:
+    repository: rweritz/agora-simulator
+    pullPolicy: IfNotPresent
+    tag: "latest"
+
+  service:
+    type: ClusterIP
+    grpcPort: 5223
+    httpPort: 5000
+
+  ingress:
+    enabled: true
+    annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: "/"
+    hosts:
+      - host: agora.local
+        paths:
+          - path: /simulator
+            pathType: Exact
+            backend:
+              service:
+                name: agora-agora-simulator
+                port:
+                  number: 5223
+          - path: /simulator/health
+            pathType: Exact
+            backend:
+              service:
+                name: agora-agora-simulator
+                port:
+                  number: 5000
+
+  autoscaling:
+    enabled: false
+
+  serviceAccount:
+    create: false
+
+agora-persistenceworker:
+  replicaCount: 1
+
+  image:
+    repository: rweritz/agora-persistenceworker
+    pullPolicy: IfNotPresent
+    tag: "latest"
+
+  service:
+    type: ClusterIP
+    port: 80
+
+  ingress:
+    enabled: false
+
+  autoscaling:
+    enabled: false
+
+  serviceAccount:
+    create: false

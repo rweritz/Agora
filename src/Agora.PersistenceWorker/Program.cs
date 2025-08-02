@@ -6,10 +6,16 @@ var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddDbContext<MarketDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("MarketDbContext")));
 builder.Services.AddHostedService<Worker>();
-builder.Services.AddGrpcClient<Market.MarketClient>(o =>
-{
-    o.Address = new Uri(builder.Configuration.GetValue<string>("Market:ServerAddress"));
-});
+
+builder.Services
+    .AddGrpcClient<Market.MarketClient>(o =>
+    {
+        o.Address = new Uri(builder.Configuration.GetValue<string>("Market:ServerAddress"));
+    })
+    .ConfigureChannel(o =>
+    {
+        o.HttpHandler = new Http3Handler(new HttpClientHandler());
+    });
 
 builder.AddServiceDefaults();
 

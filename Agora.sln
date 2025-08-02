@@ -2,13 +2,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.0.0
 MinimumVisualStudioVersion = 17.8.0.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agora.AppHost", "Agora.AppHost\Agora.AppHost.csproj", "{CB85FDF5-AA40-4CEE-AC0E-844D15E6DE67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agora.AppHost", "src\Agora.AppHost\Agora.AppHost.csproj", "{CB85FDF5-AA40-4CEE-AC0E-844D15E6DE67}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agora.ServiceDefaults", "Agora.ServiceDefaults\Agora.ServiceDefaults.csproj", "{1A850474-1734-4887-B878-4A710A9C1061}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agora.ServiceDefaults", "src\Agora.ServiceDefaults\Agora.ServiceDefaults.csproj", "{1A850474-1734-4887-B878-4A710A9C1061}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agora.Simulator", "Agora.Simulator\Agora.Simulator.csproj", "{E427EE8C-91A9-4416-B9A9-B80444A151F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agora.Simulator", "src\Agora.Simulator\Agora.Simulator.csproj", "{E427EE8C-91A9-4416-B9A9-B80444A151F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agora.PersistenceWorker", "Agora.PersistenceWorker\Agora.PersistenceWorker.csproj", "{A9CD09FE-D4E2-4E74-A553-D712A56CBD9C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agora.PersistenceWorker", "src\Agora.PersistenceWorker\Agora.PersistenceWorker.csproj", "{A9CD09FE-D4E2-4E74-A553-D712A56CBD9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
