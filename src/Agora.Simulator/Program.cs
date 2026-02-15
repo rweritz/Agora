@@ -14,11 +14,15 @@ builder.Services.AddOpenTelemetry();
 
 builder.WebHost.ConfigureKestrel((context, options) =>
 {
-    options.ListenAnyIP(5223, listenOptions =>
+    options.ListenAnyIP(builder.Configuration.GetValue<int>("GrpcPort"), listenOptions =>
     {
         //listenOptions.Protocols = HttpProtocols.Http3;
         listenOptions.Protocols = HttpProtocols.Http1AndHttp2AndHttp3;
-        //listenOptions.UseHttps(@"C:\Users\excri\.aspnet\https\Agora.Simulator.pfx", "daikav48dfio593");
+        listenOptions.UseHttps();
+    });
+    options.ListenAnyIP(builder.Configuration.GetValue<int>("HealthCheckPort"), listenOptions =>
+    {
+        listenOptions.Protocols = HttpProtocols.Http1;
         listenOptions.UseHttps();
     });
 });

@@ -1,10 +1,10 @@
-﻿FROM mcr.microsoft.com/dotnet/runtime-deps:9.0-jammy-chiseled AS base
+FROM mcr.microsoft.com/dotnet/runtime-deps:10.0-noble-chiseled AS base
 USER $APP_UID
 WORKDIR /app
 EXPOSE 5223
 EXPOSE 5000
 
-FROM mcr.microsoft.com/dotnet/sdk:9.0-jammy AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0-noble AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/Agora.PersistenceWorker/Agora.PersistenceWorker.csproj", "Agora.PersistenceWorker/"]

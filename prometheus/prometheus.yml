@@ -29,4 +29,4 @@ scrape_configs:
       insecure_skip_verify: true
     static_configs:
       - targets:
-          - host.docker.internal:5000
+          - host.docker.internal:5002

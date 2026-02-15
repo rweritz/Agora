@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>dotnet-Agora.PersistenceWorker-A89D7C33-8AD2-4FAA-A8B3-71F5024C71CA</UserSecretsId>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-        <LangVersion>13</LangVersion>
+        <LangVersion>14</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,15 +14,15 @@
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="Google.Protobuf" Version="3.31.1" />
-        <PackageReference Include="Grpc.Net.Client" Version="2.71.0" />
-        <PackageReference Include="Grpc.Net.ClientFactory" Version="2.71.0" />
-        <PackageReference Include="Grpc.Tools" Version="2.72.0">
+        <PackageReference Include="Google.Protobuf" Version="3.33.5" />
+        <PackageReference Include="Grpc.Net.Client" Version="2.76.0" />
+        <PackageReference Include="Grpc.Net.ClientFactory" Version="2.76.0" />
+        <PackageReference Include="Grpc.Tools" Version="2.78.0">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.7" />
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.3" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />
     </ItemGroup>
 
     <ItemGroup>

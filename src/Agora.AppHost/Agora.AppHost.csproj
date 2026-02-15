@@ -1,19 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <Sdk Name="Aspire.AppHost.Sdk" Version="9.4.0" />
+﻿<Project Sdk="Aspire.AppHost.Sdk/13.1.1">
   
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <IsAspireHost>true</IsAspireHost>
-    <LangVersion>13</LangVersion>
+    <LangVersion>14</LangVersion>
+    <UserSecretsId>bfc194bf-f8e1-4f35-9736-5f10866ee6f5</UserSecretsId>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.4.0" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Agora.PersistenceWorker\Agora.PersistenceWorker.csproj" />

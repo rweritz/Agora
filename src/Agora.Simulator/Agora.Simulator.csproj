@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
     
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>dotnet-Agora.Simulator-ad1d0501-3a89-4c05-a614-2e5f3953cdf8</UserSecretsId>
-        <LangVersion>13</LangVersion>
+        <LangVersion>14</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -13,7 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Grpc.AspNetCore" Version="2.60.0" />
+        <PackageReference Include="Grpc.AspNetCore" Version="2.76.0" />
     </ItemGroup>
 
     <ItemGroup>
