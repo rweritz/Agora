@@ -13,7 +13,7 @@ public class Http3Handler : DelegatingHandler
         HttpRequestMessage request, CancellationToken cancellationToken)
     {
         request.Version = HttpVersion.Version30;
-        request.VersionPolicy = HttpVersionPolicy.RequestVersionExact;
+        request.VersionPolicy = HttpVersionPolicy.RequestVersionOrLower;
         return base.SendAsync(request, cancellationToken);
     }
 }
